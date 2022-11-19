@@ -28,13 +28,13 @@ void PrintArray(double[,] array)
         Console.WriteLine();
     }
 }
-double GetElemetValue(double[,] array, int mElement, int nElement)
+double GetElemetValue(double[,] array, int[] userValue)
 {
     double result = 0;
-    if (mElement > 4 || nElement > 5) Console.WriteLine("В массиве отсутствует элемент в такой позиции");
+     if (userValue[0] > 4 || userValue[1] > 5) Console.WriteLine("В массиве отсутствует элемент в такой позиции");
     else
     {
-        result = array[mElement - 1,nElement - 1]; 
+        result = array[userValue[0] - 1, userValue[1] -1]; 
     }
     return result;
 }
@@ -43,12 +43,11 @@ double[,] arrayRandom = new double[4,5];
 
 FillArray(arrayRandom);
 
-Console.Write("Введите номер строки массива искомого элемента: ");
-int m = Convert.ToInt32(Console.ReadLine());
-Console.Write("Введите номер столбца массива искомого элемента: ");
-int n = Convert.ToInt32(Console.ReadLine());
+Console.Write("Введите через пробел сначала номер строки, затем номер столбца: ");
 
-double res = GetElemetValue(arrayRandom, m, n);
+int[] rowCol = Array.ConvertAll(Console.ReadLine().Split(),int. Parse);
+
+double res = GetElemetValue(arrayRandom, rowCol);
 
 Console.WriteLine();
 Console.WriteLine($"Искомый элемент: {res}");
